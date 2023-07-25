@@ -1,0 +1,29 @@
+﻿<syncfusion:ChromelessWindow x:Class="AppProjectDev.Views.MainWindow"
+              xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/" xmlns:collections="clr-namespace:System.Collections;assembly=System.Runtime.Extensions"
+                              prism:ViewModelLocator.AutoWireViewModel="True"
+          Title="{Binding Title}" 
+        Height="600" 
+        Width="800" 
+        TitleBarBackground="Lime" 
+        TitleBarHeight="40" 
+        UseNativeChrome="True" 
+        CornerRadius="10"  >
+    <syncfusion:ChromelessWindow.RightHeaderItemsSource>
+        <collections:ArrayList>
+            <syncfusion:ComboBoxAdv DefaultText="Themes" Margin="5" Width="80" HorizontalContentAlignment="Center"  >
+                <syncfusion:ComboBoxItemAdv   >
+                    <Button Content="Light " Click="Button_Click"  Width="80" />
+                </syncfusion:ComboBoxItemAdv>
+                <syncfusion:ComboBoxItemAdv>
+                    <Button Content="Dark" Click="Button_Click_1"  Width="80" />
+                </syncfusion:ComboBoxItemAdv>
+            </syncfusion:ComboBoxAdv>
+        </collections:ArrayList>
+    </syncfusion:ChromelessWindow.RightHeaderItemsSource>
+    <Grid>
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+    </Grid>
+</syncfusion:ChromelessWindow>

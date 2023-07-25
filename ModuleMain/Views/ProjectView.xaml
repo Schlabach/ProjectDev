@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="ModuleMain.Views.ProjectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True" Name="UT">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="66.375"/>
+            <ColumnDefinition Width="133.625"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ComboBox ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Width="120" Height="30"/>
+            <TextBlock Text="In Progress" Grid.Row="1" FontSize="30" HorizontalAlignment="Center"/>
+            <ItemsControl ItemsSource="{Binding Time}" Grid.Row="2" >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Lime" BorderThickness="2" Margin="1" Width="170">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="25"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding Name}" FontSize="12"  HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Start_Date_String}" FontSize="15"  Grid.Row="1" HorizontalAlignment="Center"/>
+                                <Button Content="End Time" Command="{Binding DataContext.EndTime, ElementName=UT}" CommandParameter="{Binding IDString}" Grid.Column="1" Grid.Row="2" Width="70" Margin="2"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+        <Grid Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Command="{Binding AddProject}" Content="Add New" Width="150" Height="40" FontSize="20" />
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5" Grid.Row="1">
+                <Border BorderThickness="2" BorderBrush="SlateGray">
+                    <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}">
+                    </ListBox>
+                </Border>
+            </ScrollViewer>
+
+        </Grid>
+        <Grid Grid.Column="3">
+            <Grid.Style >
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Content="X" Width="25" Height="25" HorizontalAlignment="Right" Margin="10" Foreground="Red" Command="{Binding Delete}"/>
+            <TextBlock Text="{Binding SelectedProject.Name}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="{Binding SelectedProject.Description}" FontSize="15" TextWrapping="Wrap" Margin="30" />
+                <StackPanel>
+                    <TextBlock Text="{Binding SelectedProject.Time}" FontSize="30" HorizontalAlignment="Center"/>
+
+                    <Button Margin="10" Content="Start Time" Width="100" Command="{Binding StartTime}" FontSize="20" Click="Button_Click"/>
+                    <Button Margin="10" Content="Complete" Width="100" Command="{Binding CompleteProject}" FontSize="20" Click="Button_Click1"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="3">
+
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+    </UserControl>

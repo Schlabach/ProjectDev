@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="22.1.39" />
+    <PackageReference Include="Syncfusion.Themes.FluentDark.WPF" Version="22.1.39" />
+    <PackageReference Include="Syncfusion.Themes.FluentLight.WPF" Version="22.1.39" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppProjectDev.core\AppProjectDev.core.csproj" />
+    <ProjectReference Include="..\ModuleMain\ModuleMain.csproj" />
+  </ItemGroup>
+
+</Project>
