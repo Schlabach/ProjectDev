@@ -22,6 +22,7 @@ namespace AppProjectDev.core.DataAccess
         public void AddTime(int project, int user);
         public void EndTime(TimeModel time);
         public void Complete(int project);
+        public void EditProject(ProjectModel project);
     }
     public class DataRepository : IDataRepository
     {
@@ -29,6 +30,14 @@ namespace AppProjectDev.core.DataAccess
         {
             return "FluentDark";
 
+        }
+        public void EditProject(ProjectModel project)
+        {
+            using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
+            {
+                conx.Open();
+                conx.Execute("UPDATE project SET description = '" + project.Description + "' WHERE id = " + project.Id + ";");
+            }
         }
         public void AddProject(ProjectModel project)
         {

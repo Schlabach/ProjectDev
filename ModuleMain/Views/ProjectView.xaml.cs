@@ -37,5 +37,18 @@ namespace ModuleMain.Views
         {
 
         }
+        private void SaveButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+        private void EditButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

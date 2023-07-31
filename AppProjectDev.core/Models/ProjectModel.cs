@@ -17,6 +17,7 @@ namespace AppProjectDev.core.Models
         public float Development { get; set; }
         public float Implementation { get; set; }
         public float Support { get; set; }
+        public int Project_ID { get; set; }
         public TimeSpan Time { get; set; }
         public string Time_String { get { return Time.ToString(@"hh\:mm"); } }
         public override string ToString()

@@ -20,6 +20,7 @@ namespace ModuleMain.ViewModels
         public DelegateCommand<string> EndTime { get; set; }
         public DelegateCommand Delete { get; set; }
         public DelegateCommand CompleteProject { get; set; }
+        public DelegateCommand EditDescription { get; set; }
 
         IDialogService dialogService;
         IDataRepository dataRepository;
@@ -34,7 +35,7 @@ namespace ModuleMain.ViewModels
             EndTime = new DelegateCommand<string>(EndTimeClick);
             Projects = new ObservableCollection<ProjectModel>();
             Time = new ObservableCollection<TimeModel>();
-
+            EditDescription = new DelegateCommand(EditProjectClick);
 
             SetUsers();
             SetView();
@@ -85,6 +86,7 @@ namespace ModuleMain.ViewModels
             if (MessageBox.Show("Are you sure you want to delete this?", "", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 dataRepository.RemoveProject(SelectedProject.Id);
+                SetView();
             }
             else
             {
@@ -97,6 +99,7 @@ namespace ModuleMain.ViewModels
             if (MessageBox.Show("Are you sure you want to complete this?", "", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 dataRepository.Complete(SelectedProject.Id);
+                SetView();
             }
         }
         // Initiates the view adds the projects and the times
@@ -104,6 +107,25 @@ namespace ModuleMain.ViewModels
         {
             Projects.Clear();
             Projects.AddRange(dataRepository.GetProjects());
+        }
+        //Binds to the edit project button; edits the description of a project
+        private void EditProjectClick()
+        {
+            if (SelectedProject != null)
+            {
+                // Pass the SelectedProject to the DialogEditProjectViewModel when opening the dialog
+                var p = new DialogParameters();
+                p.Add("Item", SelectedProject);
+                dialogService.ShowDialog("DialogEditProjectView", p, result =>
+                {
+                    ProjectModel ret = result.Parameters.GetValue<ProjectModel>("Return");
+                    if (result.Result != ButtonResult.Cancel && ret != null)
+                    {
+                        dataRepository.EditProject(ret);
+                        SetView();
+                    }
+                });
+            }
         }
         // Binds to the add project button; adds a new project
         private void AddProjectClick()
@@ -139,7 +161,6 @@ namespace ModuleMain.ViewModels
             if (SelectedProject != null)
             {
                 IsSelected = true;
-
             }
         }
 

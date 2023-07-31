@@ -12,6 +12,7 @@ namespace AppProjectDev.core.Models
         public string IDString { get { return ID.ToString(); } }
         public string Name { get; set; }
         public int Project_ID { get; set; }
+        public int TotalTime { get; set; }
         public DateTime Start_Date { get; set; }
         public DateTime End_Date { get; set; }
         public string Start_Date_String
