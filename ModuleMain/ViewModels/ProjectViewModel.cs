@@ -113,7 +113,6 @@ namespace ModuleMain.ViewModels
         {
             if (SelectedProject != null)
             {
-                // Pass the SelectedProject to the DialogEditProjectViewModel when opening the dialog
                 var p = new DialogParameters();
                 p.Add("Item", SelectedProject);
                 dialogService.ShowDialog("DialogEditProjectView", p, result =>

@@ -26,11 +26,14 @@ namespace AppProjectDev.core.DataAccess
     }
     public class DataRepository : IDataRepository
     {
+        //Selects dark theme on startup
         public string GetTheme()
         {
             return "FluentDark";
 
         }
+
+        //Updates project description
         public void EditProject(ProjectModel project)
         {
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
@@ -39,6 +42,7 @@ namespace AppProjectDev.core.DataAccess
                 conx.Execute("UPDATE project SET description = '" + project.Description + "' WHERE id = " + project.Id + ";");
             }
         }
+        //Adds new project
         public void AddProject(ProjectModel project)
         {
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
@@ -49,6 +53,7 @@ namespace AppProjectDev.core.DataAccess
 
             }
         }
+        //Deletes projects
         public void RemoveProject(int id)
         {
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
@@ -58,6 +63,7 @@ namespace AppProjectDev.core.DataAccess
                 conx.Execute("Delete from project where id like '" + id + "' ");
             }
         }
+        //Retrieves uncompleted projects and descriptions
         public List<ProjectModel> GetProjects()
         {
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
@@ -80,7 +86,7 @@ namespace AppProjectDev.core.DataAccess
                 return P;
             }
         }
-        
+        //Changes projects to complete
         public void Complete(int project)
         {
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
@@ -89,7 +95,7 @@ namespace AppProjectDev.core.DataAccess
                 conx.Execute("Update project set is_complete = '1' where id like '" + project + "'");
             }
         }
-
+        //Retreives users
         public List<UserModel> GetUsers()
         {
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
@@ -99,7 +105,7 @@ namespace AppProjectDev.core.DataAccess
 
             }
         }
-
+        //Starts a timer
         public void AddTime(int project, int user)
         {
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
@@ -109,6 +115,7 @@ namespace AppProjectDev.core.DataAccess
                       "values(" + user + ",'" + project + "','" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "', '" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "' ,'0')");
             }
         }
+        //Retrieves the total amount of time for any given project
         public List<TimeModel> GetTimeInProgress(int user)
         {
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
@@ -118,6 +125,7 @@ namespace AppProjectDev.core.DataAccess
                     "left outer join project P on T.project_id = P.id where user_id = " + user + " and total_time = 0").AsList();
             }
         }
+        //Updates the end time for a specified project
         public void EndTime(TimeModel time)
         {
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
