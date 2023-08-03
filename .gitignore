@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/AppProjectDev/App.xaml.cs
+/AppProjectDev.core/DataAccess/SqlHelper.cs
