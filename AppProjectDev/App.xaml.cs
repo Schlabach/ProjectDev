@@ -28,7 +28,7 @@ namespace AppProjectDev
         public App()
         {
             //Register Syncfusion license
-            string key = "MTc3ODU5MUAzMjMxMmUzMTJlMzQzMVRXdngxbUdxRHJudmo5cGJackVqZSs0M1JuUTlTd21wYXZhMUNKTEZoalk9";
+            string key = "Ngo9BigBOggjHTQxAR8/V1NGaF1cWGhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEZjUX9dcHNXQGNUVkx3XQ==";
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(key);
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

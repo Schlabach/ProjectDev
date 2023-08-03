@@ -10,7 +10,8 @@
         TitleBarBackground="Lime" 
         TitleBarHeight="40" 
         UseNativeChrome="True" 
-        CornerRadius="10"  >
+        CornerRadius="10" 
+        Icon="Logo.ico"> 
     <syncfusion:ChromelessWindow.RightHeaderItemsSource>
         <collections:ArrayList>
             <syncfusion:ComboBoxAdv DefaultText="Themes" Margin="5" Width="80" HorizontalContentAlignment="Center"  >
