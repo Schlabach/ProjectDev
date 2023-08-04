@@ -59,8 +59,8 @@ namespace AppProjectDev.core.DataAccess
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
             {
                 conx.Open();
-                conx.Execute("Delete from project_time where project_id like '" + id + "' ");
-                conx.Execute("Delete from project where id like '" + id + "' ");
+                conx.Execute("Delete from project_time where project_id = " + id + "");
+                conx.Execute("Delete from project where id = " + id + "");
             }
         }
         //Retrieves uncompleted projects and descriptions
@@ -92,7 +92,7 @@ namespace AppProjectDev.core.DataAccess
             using (NpgsqlConnection conx = new NpgsqlConnection(SqlHelper.ConPostgreSQL))
             {
                 conx.Open();
-                conx.Execute("Update project set is_complete = '1' where id like '" + project + "'");
+                conx.Execute("Update project set is_complete = 1 where id = " + project + "");
             }
         }
         //Retreives users
