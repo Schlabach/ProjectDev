@@ -5,7 +5,7 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-	  <ApplicationIcon>Views\Logo.Ico</ApplicationIcon>
+	  <ApplicationIcon>Views\Logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
