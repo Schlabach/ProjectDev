@@ -1,73 +1,52 @@
 ﻿using AppProjectDev.core.DataAccess;
 using AppProjectDev.core.Models;
 using Prism.Commands;
+using Prism.Dialogs;
 using Prism.Mvvm;
-using Prism.Services.Dialogs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModuleMain.ViewModels
 {
     public class DialogAddProjectViewModel : BindableBase, IDialogAware
     {
-        IDataRepository dataRepository;
-        public DelegateCommand<string> Close { get; private set; }
+        private readonly IDataRepository dataRepository;
+
+        public DelegateCommand<string> Close { get; }
+
         public DialogAddProjectViewModel(IDataRepository dataRepository)
         {
             this.dataRepository = dataRepository;
             Title = "Add Project";
             Close = new DelegateCommand<string>(CloseDialog);
+            RequestClose = new DialogCloseListener(); // Initialize the DialogCloseListener
         }
 
         private void CloseDialog(string obj)
         {
-            var p = new DialogParameters();
-            p.Add("Return", Item);
-            ButtonResult result = new ButtonResult();
-            if (obj == "Enter")
-            {
-                if (Item.Name != null)
-                {
-                    result = ButtonResult.OK;
-                    RequestClose?.Invoke(new DialogResult(result, p));
-                }
-            }
-            else
-            {
-                result = ButtonResult.Cancel;
-                RequestClose?.Invoke(new DialogResult(result, p));
-            }
+            var parameters = new DialogParameters { { "Return", Item } };
+            ButtonResult result = obj == "Enter" && Item?.Name != null ? ButtonResult.OK : ButtonResult.Cancel;
 
-
+            RequestClose.Invoke(new DialogResult(result)); // Use the new Invoke method
         }
 
         public string Title { get; }
 
-        public event Action<IDialogResult> RequestClose;
+        public DialogCloseListener RequestClose { get; } // Replace event with DialogCloseListener
 
-        public bool CanCloseDialog()
-        {
-            return true;
-        }
+        public bool CanCloseDialog() => true;
 
-        public void OnDialogClosed()
-        {
-        }
+        public void OnDialogClosed() { }
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
             Item = parameters.GetValue<ProjectModel>("Item");
-
-
         }
+
         private ProjectModel _item;
         public ProjectModel Item
         {
-            get { return _item; }
-            set { SetProperty(ref _item, value); }
+            get => _item;
+            set => SetProperty(ref _item, value);
         }
     }
 }

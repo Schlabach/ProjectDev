@@ -1,9 +1,7 @@
 ﻿<prism:PrismApplication x:Class="AppProjectDev.App"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:prism="http://prismlibrary.com/" >
-    <Application.Resources>
-        <BitmapImage x:Key="AppIcon" UriSource="Views\Logo.ico" />
-    </Application.Resources>
-    </prism:PrismApplication>
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:AppProjectDev"
+      xmlns:prism="http://prismlibrary.com/" >
 
+</prism:PrismApplication>

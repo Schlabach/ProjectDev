@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
-    <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="22.1.39" />
-    <PackageReference Include="Syncfusion.Shared.WPF" Version="22.1.39" />
+    <PackageReference Include="Prism.Wpf" Version="9.0.537" />
+    <PackageReference Include="Syncfusion.SfSkinManager.WPF" Version="28.2.9" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="28.2.9" />
   </ItemGroup>
 
   <ItemGroup>

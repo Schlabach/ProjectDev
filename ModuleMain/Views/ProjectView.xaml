@@ -6,10 +6,10 @@
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="66.375"/>
-            <ColumnDefinition Width="133.625"/>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width=".25*" MaxWidth="300"/>
+            <ColumnDefinition Width=".083*" MaxWidth="75"/>
+            <ColumnDefinition Width=".167*" MaxWidth="175"/>
+            <ColumnDefinition Width=".5*"/>
         </Grid.ColumnDefinitions>
 
         <Grid>
@@ -19,9 +19,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <ComboBox ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Width="120" Height="30"/>
-            <TextBlock Text="In Progress" Grid.Row="1" FontSize="30" HorizontalAlignment="Center"/>
-            <ItemsControl ItemsSource="{Binding Time}" Grid.Row="2" >
+            <syncfusion:ComboBoxAdv ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Width="120" Height="30"/>
+            <TextBlock Text="In Progress" Grid.Row="1" FontSize="20" HorizontalAlignment="Center"/>
+            <ItemsControl ItemsSource="{Binding Time}" Grid.Row="2">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Lime" BorderThickness="2" Margin="1" Width="170">
@@ -46,10 +46,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button Command="{Binding AddProject}" Content="Add New" Width="150" Height="40" FontSize="20" />
-
             <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5" Grid.Row="1">
-                <Border BorderThickness="2" BorderBrush="SlateGray">
+                <Border BorderThickness="2" BorderBrush="SlateGray" CornerRadius="8">
                     <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject}">
                     </ListBox>
                 </Border>
@@ -57,6 +55,21 @@
 
         </Grid>
         <Grid Grid.Column="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <syncfusion:ButtonAdv Command="{Binding AddProject}" 
+                    Label="Add Task" 
+                    Width="85" 
+                    Height="26" 
+                    FontSize="12" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,0,10,0"
+                    CornerRadius="4"/>
+
+            <Grid Grid.Row="1">
+                
             <Grid.Style >
                 <Style TargetType="Grid">
                     <Style.Triggers>
@@ -72,7 +85,13 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <syncfusion:ButtonAdv SmallIcon="C:\Users\matt\source\repos\ProjectDev\AppProjectDev\Views\pencil.png" Width="25" Height="25" HorizontalAlignment="Left" Margin="10" Command="{Binding EditDescription}" Click="Button_Click_1" />
+            <syncfusion:ButtonAdv SmallIcon="C:\Users\matt\source\repos\ProjectDev\AppProjectDev\Views\pencil.png" 
+                                  Width="25" 
+                                  Height="25" 
+                                  HorizontalAlignment="Left" 
+                                  Margin="10" 
+                                  Command="{Binding EditDescription}" 
+                                  Click="Button_Click_1" />
             <Button Content="X" Width="25" Height="25" HorizontalAlignment="Right" Margin="10" Foreground="Red" Command="{Binding Delete}"/>
             <TextBlock Text="{Binding SelectedProject.Name}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
             <StackPanel Grid.Row="2">
@@ -85,6 +104,7 @@
             <StackPanel Grid.Row="3">
 
             </StackPanel>
+            </Grid>
 
         </Grid>
     </Grid>

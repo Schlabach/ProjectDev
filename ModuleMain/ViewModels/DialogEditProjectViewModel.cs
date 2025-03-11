@@ -1,8 +1,8 @@
 ﻿using AppProjectDev.core.DataAccess;
 using AppProjectDev.core.Models;
 using Prism.Commands;
+using Prism.Dialogs;
 using Prism.Mvvm;
-using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,14 +38,14 @@ namespace ModuleMain.ViewModels
                 if (Item.Name != null)
                 {
                     result = ButtonResult.OK;
-                    RequestClose?.Invoke(new DialogResult(result, p));
+                    RequestClose?.Invoke(new DialogResult(result));
                 }
 
             }
             else
             {
                 result = ButtonResult.Cancel;
-                RequestClose?.Invoke(new DialogResult(result, p));
+                RequestClose?.Invoke(new DialogResult(result));
             }
 
 
@@ -74,11 +74,14 @@ namespace ModuleMain.ViewModels
         {
             Item = parameters.GetValue<ProjectModel>("Item");
         }
+
         private ProjectModel _item;
         public ProjectModel Item
         {
             get { return _item; }
             set { SetProperty(ref _item, value); }
         }
+
+        DialogCloseListener IDialogAware.RequestClose => throw new NotImplementedException();
     }
 }

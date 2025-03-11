@@ -2,7 +2,7 @@
 using AppProjectDev.core.Models;
 using Prism.Commands;
 using Prism.Mvvm;
-using Prism.Services.Dialogs;
+using Prism.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,14 +32,14 @@ namespace ModuleMain.ViewModels
             {
 
                 result = ButtonResult.OK;
-                RequestClose?.Invoke(new DialogResult(result, p));
+                RequestClose?.Invoke(new DialogResult(result));
 
 
             }
             else
             {
                 result = ButtonResult.Cancel;
-                RequestClose?.Invoke(new DialogResult(result, p));
+                RequestClose?.Invoke(new DialogResult(result));
             }
 
 
@@ -66,11 +66,14 @@ namespace ModuleMain.ViewModels
 
 
         }
+
         private TimeModel _item;
         public TimeModel Item
         {
             get { return _item; }
             set { SetProperty(ref _item, value); }
         }
+
+        DialogCloseListener IDialogAware.RequestClose => throw new NotImplementedException();
     }
 }

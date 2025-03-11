@@ -3,6 +3,8 @@ using AppProjectDev.core.DataAccess;
 using Syncfusion.SfSkinManager;
 using Syncfusion.Themes.FluentDark.WPF;
 using Syncfusion.Themes.FluentLight.WPF;
+using Syncfusion.Themes.MaterialDark.WPF;
+using Syncfusion.Themes.MaterialLight.WPF;
 using Syncfusion.Windows.Shared;
 using System;
 using System.Collections.Generic;
@@ -30,8 +32,8 @@ namespace AppProjectDev.Views
         {
             //Set Theme settings
             SfSkinManager.ApplyStylesOnApplication = true;
-            FluentLightThemeSettings fluentLightThemeSettings = new FluentLightThemeSettings();
-            fluentLightThemeSettings.PrimaryBackground = new SolidColorBrush(Colors.Lime);
+            MaterialLightThemeSettings fluentLightThemeSettings = new MaterialLightThemeSettings();
+            fluentLightThemeSettings.PrimaryBackground = new SolidColorBrush(Color.FromRgb(154, 194, 201));
             fluentLightThemeSettings.PrimaryForeground = new SolidColorBrush(Colors.White);
             fluentLightThemeSettings.BodyFontSize = 15;
             fluentLightThemeSettings.HeaderFontSize = 18;
@@ -40,8 +42,8 @@ namespace AppProjectDev.Views
             fluentLightThemeSettings.SubTitleFontSize = 16;
             fluentLightThemeSettings.FontFamily = new FontFamily("Callibri");
             SfSkinManager.RegisterThemeSettings("FluentLight", fluentLightThemeSettings);
-            FluentDarkThemeSettings fluentDarkThemeSettings = new FluentDarkThemeSettings();
-            fluentDarkThemeSettings.PrimaryBackground = new SolidColorBrush(Colors.Lime);
+            MaterialDarkThemeSettings fluentDarkThemeSettings = new MaterialDarkThemeSettings();
+            fluentDarkThemeSettings.PrimaryBackground = new SolidColorBrush(Color.FromRgb(74, 80, 67));
             fluentDarkThemeSettings.PrimaryForeground = new SolidColorBrush(Colors.Linen);
             fluentDarkThemeSettings.BodyFontSize = 15;
             fluentDarkThemeSettings.HeaderFontSize = 18;

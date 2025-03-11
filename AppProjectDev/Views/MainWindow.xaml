@@ -7,7 +7,7 @@
           Title="{Binding Title}" 
         Height="600" 
         Width="800" 
-        TitleBarBackground="Lime" 
+        TitleBarBackground="Transparent" 
         TitleBarHeight="40" 
         UseNativeChrome="True" 
         CornerRadius="10" 
